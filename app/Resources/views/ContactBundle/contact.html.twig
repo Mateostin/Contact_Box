@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}New Contact{% endblock %}
+
+{% block body %}
+
+    {% block content %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text"><img src="{{ asset('img_avatar.png') }}"
+                                          class="img-responsive img-circle"/></p>
+                <h5 class="card-title">{{ contact.name }} {{ contact.surname }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ contact.description }}</h6>
+                {% for address in contact.addresses %}
+                    <h6 class="card-subtitle mb-2 text-muted">{{ address.street }} {{ address.streetnumber }}/{{ address.housenumber }}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ address.city }}</h6>
+                {% endfor %}
+                <p class="card-text"></p>
+                <a href="/person/{{ contact.id }}/modify" class="card-link">Edytuj</a>
+                <a href="/person/{{ contact.id }}/delete" class="card-link">Usuń</a>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

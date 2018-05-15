@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+
+{% block title %}All Contact{% endblock %}
+
+{% block body %}
+
+    {% block content %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+                    <div class="panel panel-default">
+
+
+                        {% for key,letter in letters %}
+                            <div class="panel-heading c-list">
+                                <span class="title">{{ key }}</span>
+                            </div>
+                            <ul class="list-group" id="contact-list">
+                                {% for person in letter %}
+                                    <li class="list-group-item">
+                                        <div class="col-xs-12 col-sm-3">
+                                            <img src="{{ asset('img_avatar.png') }}"
+                                                 class="img-responsive img-circle"/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-9">
+                                            <a href="{{ person.id }}">
+                                                <span class="name">{{ person.name }} {{ person.surname }}</span>
+                                            </a><br/>
+                                        </div>
+                                        {% for address in person.address %}
+                                            {{ address.street }} {{ address.streetnumber }}/{{ address.housenumber }}
+                                            <br>
+                                            {{ address.city }}
+                                        {% endfor %}
+                                        <div class="clearfix"></div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+{% endblock %}
